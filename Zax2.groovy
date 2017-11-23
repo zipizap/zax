@@ -17,6 +17,10 @@ import org.freeplane.plugin.script.proxy.*
 
 
 class Engine {
+  // Try changing these values if you have a high-dpi monitor
+  Font my_font = new Font("Courier New", Font.PLAIN, 17)
+  ArrayList<Integer> window_size = [450,325]
+
   ArrayList<Command> cmds_registered = []          // <Command>
   @Bindable ObservableList current_cmd_candidates = []  // <Command>
   @Bindable ObservableList current_user_keys = []       // <Character>
@@ -30,11 +34,12 @@ class Engine {
     _dbg("  current_user_keys      = " + current_user_keys.inspect())
     gui["frame"] = new SwingBuilder().frame(
       title: 'Zax2',
-      size: [450,325],
+      size: window_size,
       show: true,
       defaultCloseOperation: WindowConstants.DISPOSE_ON_CLOSE) {         // WindowConstants.EXIT_ON_CLOSE would also close Freeplane main window... see http://stackoverflow.com/q/7799940
         vbox {
           gui["current_user_keys_label"] = label(
+            font: my_font,
             text: bind(
               source: current_user_keys,
               sourceEvent: 'propertyChange',
@@ -48,7 +53,7 @@ class Engine {
           scrollPane() {
             gui["current_cmd_candidates_txtarea"] = textArea(
               editable: false,
-              font: new Font("Courier New", Font.PLAIN, 11),
+              font: my_font,
               foreground: new Color(111,255,0),
               background: new Color(20,20,20),
               text: bind(
