@@ -18,7 +18,7 @@ import org.freeplane.plugin.script.proxy.*
 
 class Engine {
   // Try changing these values if you have a high-dpi monitor
-  Font my_font = new Font("Courier New", Font.PLAIN, 17)
+  Font my_font = new Font("Courier New", Font.PLAIN, 11)
   ArrayList<Integer> window_size = [450,325]
 
   ArrayList<Command> cmds_registered = []          // <Command>
